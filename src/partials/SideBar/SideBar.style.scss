@@ -1,0 +1,19 @@
+.sidebar {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    height: 100vh;
+    background: var(--sidebar-color);
+    padding-top: 50px;
+  }
+
+  &__icon {
+    width: 40px;
+    cursor: pointer;
+    &--active {
+      color: var(--sidebar-active-color);
+    }
+  }
+}
