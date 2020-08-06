@@ -4,9 +4,9 @@ import { Switch, Route } from "react-router-dom";
 import "./HomePage.style.scss";
 
 import { SideBar } from "../../partials";
-import { KanbanCardList, NotePad, SignUp } from "../../components";
+import { KanbanCardList, NotePad } from "../../components";
 
-const HomePage = () => {
+const HomePage = (currentUser) => {
   return (
     <div className="homepage__container">
       <SideBar />

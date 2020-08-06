@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./App.css";
 
 import { HomePage, AuthenticationPage } from "./pages";
 import { AuthContext } from "./contexts";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserInFireStore } from "./firebase/firebase.utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -12,9 +12,19 @@ function App() {
   auth.unsubscribeFromAuth = null;
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserInFireStore(userAuth);
 
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
       return () => {
         auth.unsubscribeFromAuth();
       };
