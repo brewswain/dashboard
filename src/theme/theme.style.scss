@@ -1,8 +1,14 @@
 body {
-  --background-color: #f7f7ff;
+  //Main body styling
+  --background-color: #fcfdfe;
   --main-text-color: #555;
   --secondary-text-color: rgb(175, 175, 175);
   --sidebar-color: #2d2f3a;
   --sidebar-active-color: whitesmoke;
   --sidebar-inactive-color: rgb(180, 180, 180);
+
+  // kanban styling
+  --kanban-background-color: rgba(196, 200, 210, 0.1);
+  --kanban-title-color: #a2adc9;
+  --kanban-task-color: #5f6985;
 }

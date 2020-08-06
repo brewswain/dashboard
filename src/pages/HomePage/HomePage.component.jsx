@@ -3,15 +3,17 @@ import React from "react";
 import "./HomePage.style.scss";
 
 import { SideBar } from "../../partials";
-import { CardList } from "../../components";
+import { KanbanCardList } from "../../components";
 
-const HomePage = () => (
-  <div className="homepage__container">
-    <SideBar />
-    <div className="homepage__content">
-      <CardList />
+const HomePage = () => {
+  return (
+    <div className="homepage__container">
+      <SideBar />
+      <div className="homepage__content">
+        <KanbanCardList />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default HomePage;
