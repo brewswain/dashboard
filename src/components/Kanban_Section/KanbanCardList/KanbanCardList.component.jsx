@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import "./KanbanCardList.style.scss";
 
-import { initialKanbanData } from "../../data";
-import { KanbanColumn } from "..";
+import { initialKanbanData } from "../../../data";
+import { KanbanColumn } from "../..";
 
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 

@@ -1,17 +1,21 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 
 import "./HomePage.style.scss";
 
 import { SideBar } from "../../partials";
-import { KanbanCardList } from "../../components";
+import { KanbanCardList, NotePad, SignUp } from "../../components";
 
 const HomePage = () => {
   return (
     <div className="homepage__container">
       <SideBar />
-      <div className="homepage__content">
-        <KanbanCardList />
-      </div>
+      <Switch>
+        <div className="homepage__content">
+          <Route exact path="/" component={KanbanCardList} />
+          <Route path="/notes" component={NotePad} />
+        </div>
+      </Switch>
     </div>
   );
 };

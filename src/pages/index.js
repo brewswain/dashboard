@@ -1,3 +1,4 @@
 import HomePage from "./HomePage/HomePage.component";
+import AuthenticationPage from "./AuthenticationPage/AuthenticationPage.component";
 
-export { HomePage };
+export { AuthenticationPage, HomePage };

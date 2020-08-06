@@ -2,7 +2,7 @@ import React from "react";
 
 import "./KanbanColumn.style.scss";
 
-import { KanbanTask } from "..";
+import { KanbanTask } from "../..";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const KanbanColumn = (props) => {
