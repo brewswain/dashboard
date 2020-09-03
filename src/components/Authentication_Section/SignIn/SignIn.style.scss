@@ -1,0 +1,39 @@
+.signin {
+  &__container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: var(--authentication-text-color);
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link__wrapper {
+    text-align: center;
+  }
+
+  &__link {
+    color: var(--authentication-link-color);
+    font-size: 1.1rem;
+
+    text-decoration: none;
+  }
+}

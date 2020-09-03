@@ -5,18 +5,21 @@ import "./App.css";
 import { HomePage, AuthenticationPage } from "./pages";
 import { AuthContext } from "./contexts";
 import { auth, createUserInFireStore } from "./firebase/firebase.utils";
+import { Redirect, Route } from "react-router-dom";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const isLoggedIn = localStorage.getItem("user");
 
-  auth.unsubscribeFromAuth = null;
-
+  // maybe do something with useMemo or store currentUser inside of localStorage
   useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
+    let unsubscribeFromAuth = null;
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserInFireStore(userAuth);
 
-        userRef.onSnapshot((snapShot) => {
+        userRef.onSnapshot(async (snapShot) => {
+          localStorage.setItem("user", JSON.stringify(snapShot.data()));
           setCurrentUser({
             id: snapShot.id,
             ...snapShot.data(),
@@ -25,17 +28,20 @@ function App() {
       } else {
         setCurrentUser(userAuth);
       }
-      return () => {
-        auth.unsubscribeFromAuth();
-      };
     });
+
+    return () => {
+      unsubscribeFromAuth();
+    };
   }, []);
 
   return (
     <>
-      {currentUser ? (
+      <Route exact path="/" component={HomePage} />
+
+      {isLoggedIn ? (
         <AuthContext.Provider value={currentUser}>
-          <HomePage />
+          <Redirect to="/" />
         </AuthContext.Provider>
       ) : (
         <AuthenticationPage />

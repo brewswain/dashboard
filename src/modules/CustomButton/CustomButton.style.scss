@@ -1,0 +1,19 @@
+.custom {
+  &__button {
+    width: 200px;
+    height: 55px;
+    padding: 0 35px 0 35px;
+    border: none;
+    cursor: pointer;
+    border-radius: 28px;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+
+    background-color: var(--authentication-button-background);
+    color: var(--authentication-background-color);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

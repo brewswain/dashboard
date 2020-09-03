@@ -10,6 +10,10 @@
     margin: 0;
   }
 
+  &__displayName {
+    color: whitesmoke;
+  }
+
   &__icon {
     width: 40px;
     color: var(--sidebar-inactive-color);
