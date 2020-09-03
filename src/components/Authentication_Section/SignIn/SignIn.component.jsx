@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { auth } from "../../../firebase/firebase.utils";
 
 import "./SignIn.style.scss";
 
@@ -12,9 +13,15 @@ const SignIn = () => {
 
   const { email, password } = signInData;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("hewwo from signin");
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setSignInData({ email: "", password: "" });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleChange = (event) => {

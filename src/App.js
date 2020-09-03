@@ -19,7 +19,10 @@ function App() {
         const userRef = await createUserInFireStore(userAuth);
 
         userRef.onSnapshot(async (snapShot) => {
-          localStorage.setItem("user", JSON.stringify(snapShot.data()));
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ id: snapShot.id, data: snapShot.data() })
+          );
           setCurrentUser({
             id: snapShot.id,
             ...snapShot.data(),

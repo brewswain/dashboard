@@ -1,14 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./KanbanCardList.style.scss";
 
+import {
+  firestore,
+  convertSnapshotToObject,
+  getKanbanData,
+} from "../../../firebase/firebase.utils";
 import { initialKanbanData } from "../../../data";
+
 import { KanbanColumn } from "../..";
 
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const KanbanCardList = () => {
-  const [kanbanData, setKanbanData] = useState(initialKanbanData);
+  const [kanbanData, setKanbanData] = useState({
+    columns: {
+      "column-1": {
+        id: "column-1",
+        title: "To do",
+        taskIds: [],
+      },
+      "column-2": {
+        id: "column-2",
+        title: "In Progress",
+        taskIds: [],
+      },
+      "column-3": {
+        id: "column-3",
+        title: "Finished",
+        taskIds: [],
+      },
+    },
+
+    columnOrder: ["column-1", "column-2", "column-3"],
+  });
+  const isLoggedIn = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    getKanbanData(isLoggedIn, setKanbanData);
+    // let unsubscribeFromSnapshot = null;
+    // // unsubscribeFromSnapshot = taskRef.onSnapshot(async (snapshot) => {
+    // //   const tasksMap = convertSnapshotToObject(snapshot);
+    // //   console.log(tasksMap);
+    // console.log();
+  }, []);
+
+  useEffect(() => {
+    console.log(kanbanData);
+  }, [kanbanData]);
 
   const onDragStart = () => {
     return;

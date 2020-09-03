@@ -16,7 +16,7 @@ const SideBar = ({ isLoggedIn }) => {
   return (
     <div className="sidebar__container">
       {/* Proof of concept; Can display user's displayName by using the "isLoggedIn" information as a prop gleaned from localStorage */}
-      <div className="sidebar__displayName">{isLoggedIn.displayName}</div>
+      {/* <div className="sidebar__displayName">{isLoggedIn.displayName}</div> */}
       <NavLink exact to="/" activeClassName="sidebar__icon--active">
         <HomeIcon className="sidebar__icon" />
       </NavLink>
