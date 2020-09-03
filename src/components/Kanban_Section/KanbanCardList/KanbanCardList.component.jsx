@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./KanbanCardList.style.scss";
 
-import {
-  firestore,
-  convertSnapshotToObject,
-  getKanbanData,
-} from "../../../firebase/firebase.utils";
-import { initialKanbanData } from "../../../data";
+import { firestore, getKanbanData } from "../../../firebase/firebase.utils";
 
 import { KanbanColumn } from "../..";
 
@@ -15,11 +10,14 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const KanbanCardList = () => {
   const [kanbanData, setKanbanData] = useState({
+    tasks: {
+      "task-1": {},
+    },
     columns: {
       "column-1": {
         id: "column-1",
         title: "To do",
-        taskIds: [],
+        taskIds: ["task-1"],
       },
       "column-2": {
         id: "column-2",
